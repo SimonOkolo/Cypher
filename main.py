@@ -34,12 +34,11 @@ def encode(message, key = ""):
 
         #The time is retrieved in the format 123456
 
-        #print(cypher)
+        print(cypher)
 
     if len(key) > 0:
         #encode with key
         pass
-    pass
 
 def decode(message, key = ""):
     if key == "":
@@ -51,4 +50,4 @@ def decode(message, key = ""):
         pass
     pass
 
-encode("svool")
+encode("hello my name is daniel")
