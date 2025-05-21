@@ -1,53 +1,58 @@
-from  datetime import datetime
-import os
+alphanumeric = "abcdefghijklmnopqrstuvwxyz"
 
-alphanumeric = "abcdefghijklmnopqrstuvwxyz1234567890"
-reverseCouple = [["a","z"], ["b","y"], ["c","x"], ["d","w"], ["e","v"], ["f","u"], ["g","t"], ["h","s"], ["i","r"], ["j","q"], ["k","p"], ["l","o"], ["m","n"], ["n","m"], ["o","l"], ["p","k"], ["q","j"], ["r","i"], ["s","h"], ["t","g"], ["u","f"], ["v","e"], ["w","d"], ["x","c"], ["y","b"], ["z","a"]]
+reverseCouple = [["a","z"], ["b","y"], ["c","x"], 
+                 ["d","w"], ["e","v"], ["f","u"], 
+                 ["g","t"], ["h","s"], ["i","r"], 
+                 ["j","q"], ["k","p"], ["l","o"], 
+                 ["m","n"], ["n","m"], ["o","l"], 
+                 ["p","k"], ["q","j"], ["r","i"], 
+                 ["s","h"], ["t","g"], ["u","f"], 
+                 ["v","e"], ["w","d"], ["x","c"], 
+                 ["y","b"], ["z","a"]]
 
+geneDict = {
+    0 : "A",
+    1 : "C",
+    2 : "G",
+    3 : "T"
+}
 
-def captureDate(): 
-    now = datetime.now()
-    f_date = now.strftime("%H%M%S")
-    return f_date    #used as a shift
+nucleotidePairs = {
+    "A" : "T",
+    "C" : "G",
+    "G" : "C",
+    "T" : "A"
+}
 
-def cypherStrength():
-    s = int(input("Enter cypher strengh:\n[ 1 | 2 | 3 ]"))
-    if s == 1 or s == 2 or s == 3:
-        return s
-    else:
-        print("Invalid Strenght...")
-        os.system('cls')
-        cypherStrength()
-
-
-def encode(message, key = ""):
+def encode(message):
+    encoded = ""
     cypher = ""
-    #strength = cypherStrength()
-    if key == "":
-        #encode without a key
+    print(message)
 
-        #Substituting each character for their couple in the reverse couple
-        for letter in message:
-            for couple in reverseCouple:
-                if letter == couple[0]:
-                    cypher += couple[1]
+    #Substituting each character for their couple in the reverse couple
+    #end var = cypher
+    for letter in message:
+        for couple in reverseCouple:
+            if letter == couple[0]:
+                cypher += couple[1]
 
-        #The time is retrieved in the format 123456
+    #print(cypher)
 
-        print(cypher)
+    #each letter is switched to binary form and split into pairs, these pairs are translated to
+    #integers and a corresponding nucleotide is assigned, then the pair is found creating the cypher
+    #end var = dnaSeq
+    dnaSeq = ""
+    for char in cypher:
+        char_bin = format(ord(char), '08b')
+        #format 01110011
+        for x in range(0, len(char_bin), 2):
+            dnaSeq += nucleotidePairs[geneDict[int(char_bin[x:x+2], 2)]]
+    
+    #print(dnaSeq)
+    encoded = dnaSeq
+    return encoded
 
-    if len(key) > 0:
-        #encode with key
-        pass
+def decode(encryptedMessage):
+    print(encryptedMessage)
 
-def decode(message, key = ""):
-    if key == "":
-        #decode without a key
-        pass
-
-    if len(key) > 0:
-        #decode with key
-        pass
-    pass
-
-encode("hello my name is daniel")
+print(encode("hello"))
