@@ -36,7 +36,7 @@ def encode(message):
             if letter == couple[0]:
                 cypher += couple[1]
 
-    #print(cypher)
+    print(cypher)
 
     #each letter is switched to binary form and split into pairs, these pairs are translated to
     #integers and a corresponding nucleotide is assigned, then the pair is found creating the cypher
@@ -55,4 +55,4 @@ def encode(message):
 def decode(encryptedMessage):
     print(encryptedMessage)
 
-print(encode("hello"))
+print(encode("The visitor entered at a time not listed on any clock. Under the heel of his boot, the dust shifted just slightly, as though remembering something. Nothing on the walls made sense — not the crooked map, not the mirror that reflected nothing but heat. Keyholes outnumbered doors, but none were shaped alike. Every footprint he didn’t leave led somewhere. Yesterday was printed beneath the rug. Or maybe the word was “Yet.” Usually the light flickered twice, then once, then three times. Silence answered first. He smiled. He was always fond of games."))
